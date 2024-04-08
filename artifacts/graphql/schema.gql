@@ -1,0 +1,175 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+input CreateUserInput {
+  """The user email"""
+  email: String!
+
+  """The user name"""
+  name: String!
+
+  """The user strong password"""
+  password: String!
+}
+
+type CreateUserType {
+  """The user email"""
+  email: String
+
+  """The user uuid"""
+  id: ID!
+
+  """The user name"""
+  name: String
+}
+
+type FindUserType {
+  """The user audiences"""
+  audiences: [UserAudiences!]!
+
+  """The user email"""
+  email: String!
+
+  """The user id"""
+  id: ID!
+
+  """The user name"""
+  name: String!
+}
+
+type FindUsersType {
+  """The total count of users"""
+  count: Float!
+
+  """The current count of users"""
+  currentCount: Float!
+  data: [FindUserType!]!
+
+  """The current page of users"""
+  page: Float!
+
+  """The total take users"""
+  take: Float!
+}
+
+input LoginInput {
+  """The user email"""
+  email: String!
+
+  """The user password"""
+  password: String!
+}
+
+type LoginType {
+  """The access token"""
+  accessToken: String!
+
+  """The refresh token"""
+  refreshToken: String!
+}
+
+type Mutation {
+  """
+  *Create a user* 
+  
+  Authorization: ApiKey
+  """
+  CreateUser(input: CreateUserInput!): CreateUserType!
+
+  """
+  *Login and get tokens.* 
+  
+  Authorization: ApiKey
+  """
+  Login(input: LoginInput!): LoginType!
+
+  """
+  *Refresh tokens*. 
+  
+  Authorization: Bearer
+  """
+  ResfreshToken: RefreshTokenType!
+
+  """
+  *Update a user* 
+  
+  Authorization: Bearer
+  """
+  UpdateUser(input: UpdateUserInput!): UpdateUserType!
+}
+
+type Query {
+  """
+  *Find a user detail by id* 
+  
+  Authorization: Bearer
+  """
+  FindUser(
+    """The user id"""
+    id: ID!
+  ): FindUserType!
+
+  """
+  *Find users list by criteria filter* 
+  
+  Authorization: Bearer
+  """
+  FindUsers(
+    """The user email"""
+    email: String
+
+    """The keyword to search by like"""
+    keyword: String
+
+    """The user name"""
+    name: String
+
+    """The number of page to list"""
+    page: Float
+
+    """The column to order sort"""
+    sortColumn: String
+
+    """The column name to sort"""
+    sortName: String
+
+    """The order to sort"""
+    sortOrder: String
+
+    """The number of items to take"""
+    take: Float
+  ): FindUsersType!
+}
+
+type RefreshTokenType {
+  accessToken: String!
+  refreshToken: String!
+}
+
+input UpdateUserInput {
+  """The user email"""
+  email: String
+
+  """The user id"""
+  id: ID!
+
+  """The user name"""
+  name: String
+}
+
+type UpdateUserType {
+  """The user email"""
+  email: String
+
+  """The user uuid"""
+  id: ID!
+
+  """The user name"""
+  name: String
+}
+
+enum UserAudiences {
+  ADMIN
+  GENERAL
+}
